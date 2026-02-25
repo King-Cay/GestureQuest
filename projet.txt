@@ -1,0 +1,164 @@
+============================================================
+CAHIER DES CHARGES — Jeu de plateforme contrôlé par les mains
+============================================================
+
+1. OBJECTIF DU PROJET
+Développer un jeu de plateforme 2D dans lequel le joueur contrôle un personnage
+uniquement avec les mouvements et gestes de ses mains, détectés via webcam.
+Le jeu doit être fluide, réactif, intuitif et jouable en temps réel.
+
+------------------------------------------------------------
+2. FONCTIONNALITÉS PRINCIPALES
+------------------------------------------------------------
+
+2.1. Contrôles via la main droite (déplacement)
+- Déplacement horizontal du personnage en bougeant la main droite.
+- Vitesse proportionnelle à la vitesse du mouvement.
+- Saut déclenché par un geste (ex : lever la main, pincer, ou index levé).
+- Dash ou action spéciale via un geste distinct.
+
+2.2. Contrôles via la main gauche (actions)
+- Pause / menu.
+- Changement d’arme ou de mode.
+- Activation d’un pouvoir spécial.
+- Interaction avec objets (ouvrir porte, activer levier).
+
+2.3. Gameplay
+- Niveaux avec plateformes, obstacles, ennemis.
+- Collectibles (pièces, orbes, bonus).
+- Système de vie ou d’énergie.
+- Checkpoints.
+- Effets visuels simples mais lisibles.
+
+------------------------------------------------------------
+3. PIPELINE TECHNIQUE
+------------------------------------------------------------
+
+3.1. Acquisition vidéo
+- Webcam 720p ou 1080p.
+- 30 FPS minimum.
+
+3.2. Détection des mains
+- MediaPipe Hands (21 landmarks par main).
+- Détection simultanée des deux mains.
+- Identification automatique main droite / main gauche.
+
+3.3. Extraction de features
+- Position de la main dans l’espace (x, y).
+- Vitesse et direction du mouvement.
+- Ouverture/fermeture de la main.
+- Gestes statiques (poing, main ouverte, index levé).
+- Gestes dynamiques (translation rapide, pincer, rotation).
+
+3.4. Reconnaissance de gestes
+Gestes statiques :
+- Poing fermé
+- Main ouverte
+- Index levé
+- Deux doigts levés
+- Pincer
+
+Gestes dynamiques :
+- Mouvement horizontal (déplacement)
+- Mouvement vertical rapide (saut)
+- Translation rapide (dash)
+- Rotation du poignet (changement d’arme)
+
+3.5. Moteur d’interaction
+- Mapping gestes → actions du personnage.
+- Gestion des états (sol, saut, dash, attaque).
+- Priorité des actions (ex : dash > déplacement).
+
+3.6. Moteur de jeu
+- Moteur 2D (Unity, Godot ou Pygame).
+- Physique simple (gravité, collisions).
+- Animation du personnage.
+- Gestion des ennemis et obstacles.
+
+------------------------------------------------------------
+4. INTERFACE UTILISATEUR (UI/UX)
+------------------------------------------------------------
+
+4.1. Éléments UI
+- Barre de vie.
+- Indicateur du geste détecté.
+- Icône du mode actif (attaque, dash, pouvoir).
+- Score / collectibles.
+- Menu pause.
+
+4.2. Feedback visuel
+- Effet lumineux lors d’un geste reconnu.
+- Effet de vitesse lors du dash.
+- Particules lors du saut.
+- Indicateur discret de tracking des mains.
+
+------------------------------------------------------------
+5. CONTRAINTES TECHNIQUES
+------------------------------------------------------------
+
+5.1. Performance
+- Latence < 80 ms.
+- 30 FPS minimum.
+- Moteur de jeu fluide même avec tracking actif.
+
+5.2. Robustesse
+- Fonctionne dans des conditions de lumière normales.
+- Gestion des pertes de tracking.
+- Détection fiable des deux mains.
+
+5.3. Extensibilité
+- Architecture modulaire :
+  - hand_tracking
+  - gesture_recognition
+  - player_controller
+  - game_engine
+  - ui_manager
+
+------------------------------------------------------------
+6. TECHNOLOGIES RECOMMANDÉES
+------------------------------------------------------------
+
+Option Python :
+- MediaPipe
+- OpenCV
+- Pygame
+- NumPy
+
+Option Unity :
+- Unity 2D
+- Plugin MediaPipe Unity
+- C#
+
+Option Godot :
+- Godot Engine 4
+- MediaPipe via Python bridge ou plugin
+
+------------------------------------------------------------
+7. PLAN DE DÉVELOPPEMENT
+------------------------------------------------------------
+
+Sprint 1 — Tracking + affichage des mains
+Sprint 2 — Déplacement horizontal du personnage
+Sprint 3 — Saut + dash via gestes
+Sprint 4 — Ennemis, obstacles, collectibles
+Sprint 5 — UI + feedback visuel
+Sprint 6 — Optimisation + équilibrage du gameplay
+
+------------------------------------------------------------
+8. LIVRABLES
+------------------------------------------------------------
+- Code source documenté.
+- Jeu jouable avec plusieurs niveaux.
+- Vidéo de démonstration.
+- Rapport technique (optionnel).
+- Interface claire et lisible.
+
+------------------------------------------------------------
+9. CRITÈRES DE RÉUSSITE
+------------------------------------------------------------
+- Le personnage répond de manière fluide aux gestes.
+- Le jeu est jouable sans latence notable.
+- Les gestes sont reconnus de manière fiable.
+- Le gameplay est fun et intuitif.
+- Le système fonctionne en temps réel.
+============================================================
